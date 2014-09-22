@@ -1,0 +1,158 @@
+# - Try to find Sndfile
+# Once done this will define
+#
+#  SNDFILE_FOUND - system has Sndfile
+#  SNDFILE_INCLUDE_DIR - the Sndfile include directory
+#  SNDFILE_LIB - Link these to use Sndfile
+#  SNDFILE_DEFINITIONS - Compiler switches required for using Sndfile
+#  SNDFILE_VERSION - Sndfile version
+#
+#  Copyright (c) 2006 Andreas Schneider <mail@cynapses.org>
+#
+# Redistribution and use is allowed according to the terms of the New BSD license.
+# For details see the accompanying COPYING-CMAKE-SCRIPTS file.
+#
+
+
+
+if (SNDFILE_LIB AND SNDFILE_INCLUDE_DIR)
+  # in cache already
+  set(SNDFILE_FOUND TRUE)
+
+else (SNDFILE_LIB AND SNDFILE_INCLUDE_DIR)
+  # WIN32Ç≈Ç»ÇØÇÍÇŒÅAFindPagConfigÇì«Ç›çûÇÒÇ≈ÅApkg_check_modulesÇ≈Sndfile-2.0Çåüçı
+  if (NOT WIN32)
+    include(FindPkgConfig)
+    pkg_check_modules(SNDFILE2 Sndfile-2.0)
+
+    if (SNDFILE2_FOUND)
+      set(SNDFILE_INCLUDE_DIR
+        ${SNDFILE2_INCLUDE_DIR}
+      )
+      if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+        set(SNDFILE_LIB "${SNDFILE2_LIBRARY_DIR}/lib${SNDFILE2_LIB}.dylib")
+
+      else (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+        set(SNDFILE_LIB
+          ${SNDFILE2_LIB}
+        )
+
+      endif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+      set(SNDFILE_VERSION
+        19
+      )
+      set(SNDFILE_FOUND TRUE)
+    else (SNDFILE2_FOUND)
+      find_path(SNDFILE_INCLUDE_DIR
+        NAMES
+          sndfile.h
+        PATHS
+          /usr/include
+          /usr/local/include
+          /opt/local/include
+          /sw/include
+      )
+
+      find_library(SNDFILE_LIBRARY
+        NAMES
+          Sndfile
+        PATHS
+          /usr/lib
+          /usr/local/lib
+          /opt/local/lib
+          /sw/lib
+      )
+
+      find_path(SNDFILE_LIBRARY_DIR
+        NAMES
+          Sndfile
+        PATHS
+          /usr/lib
+          /usr/local/lib
+          /opt/local/lib
+          /sw/lib
+      )
+
+      set(SNDFILE_INCLUDE_DIR
+        ${SNDFILE_INCLUDE_DIR}
+      )
+      set(SNDFILE_LIB
+        ${SNDFILE_LIBRARY}
+      )
+
+      set(SNDFILE_LIBRARY_DIR
+        ${SNDFILE_LIBRARY_DIR}
+      )
+
+      set(SNDFILE_VERSION
+        18
+      )
+
+      if (SNDFILE_INCLUDE_DIR AND SNDFILE_LIB)
+        set(SNDFILE_FOUND TRUE)
+      endif (SNDFILE_INCLUDE_DIR AND SNDFILE_LIB)
+
+      if (SNDFILE_FOUND)
+        if (NOT Sndfile_FIND_QUIETLY)
+          message(STATUS "Found Sndfile: ${SNDFILE_LIB}")
+        endif (NOT Sndfile_FIND_QUIETLY)
+      else (SNDFILE_FOUND)
+        if (Sndfile_FIND_REQUIRED)
+          message(FATAL_ERROR "Could not find Sndfile")
+        endif (Sndfile_FIND_REQUIRED)
+      endif (SNDFILE_FOUND)
+    endif (SNDFILE2_FOUND)
+
+  else (NOT WIN32)
+
+
+    find_path(SNDFILE_INCLUDE_DIR
+      NAMES
+        sndfile.h
+      PATHS
+        ../../../audacity-src-*/lib-src/libsndfile/Win32
+#        ../../../Sndfile/include
+    )
+
+    message(STATUS "SNDFILE_INCLUDE_DIR = ${SNDFILE_INCLUDE_DIR}")
+
+    find_path(SNDFILE_LIBRARY_DIR
+      NAMES
+        sndfile.lib
+      PATHS
+         ../../../audacity-src-*/lib-src/libsndfile/VS2013
+         ../../../audacity-src-*/lib-src/libsndfile/Win32
+#         ../../../Sndfile/build/msvc/Win32/Release
+    )
+
+    if (SNDFILE_INCLUDE_DIR AND SNDFILE_LIB)
+      set(SNDFILE_FOUND TRUE)
+    endif (SNDFILE_INCLUDE_DIR AND SNDFILE_LIB)
+
+
+    if (SNDFILE_FOUND)
+
+      if (NOT Sndfile_FIND_QUIETLY)
+        message(STATUS "Found Sndfile: ${SNDFILE_LIB}")
+      endif (NOT Sndfile_FIND_QUIETLY)
+    else (SNDFILE_FOUND)
+      if (Sndfile_FIND_REQUIRED)
+        message(FATAL_ERROR "Could not find Sndfile")
+      endif (Sndfile_FIND_REQUIRED)
+    endif (SNDFILE_FOUND)
+
+    set(SNDFILE_LIB "sndfile.lib")
+    set(SNDFILE_INCLUDE_DIR ${SNDFILE_INCLUDE_DIR})
+    set(SNDFILE_LIBRARY_DIR ${SNDFILE_LIBRARY_DIR})
+
+    message(STATUS "SNDFILE_LIB = ${SNDFILE_LIB}")
+    message(STATUS "SNDFILE_INCLUDE_DIR = ${SNDFILE_INCLUDE_DIR}")
+    message(STATUS "SNDFILE_LIBRARY_DIR = ${SNDFILE_LIBRARY_DIR}")
+
+  endif (NOT WIN32)
+
+  # show the SNDFILE_INCLUDE_DIR and SNDFILE_LIB variables only in the advanced view
+  mark_as_advanced(SNDFILE_INCLUDE_DIR SNDFILE_LIB)
+
+
+endif (SNDFILE_LIB AND SNDFILE_INCLUDE_DIR)

@@ -1,0 +1,12 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(GTKMM gtkmm-2.4)
+
+SET( GTKMM_INCLUDE_DIRS ${GTKMM_INCLUDE_DIRS} )
+SET( GTKMM_LIB_DIRS ${GTKMM_LIBRARY_DIRS} )
+SET( GTKMM_LIBS     ${GTKMM_LIBRARIES} )
+	
+
+#message(STATUS "gtkmm_inc---> ${GTKMM_INCLUDE_DIRS}")
+#message(STATUS "gtkmm_lib_dir---> ${GTKMM_LIBRARY_DIRS}")
+#message(STATUS "gtkmm_lib---> ${GTKMM_LIBRARIES}")
+
