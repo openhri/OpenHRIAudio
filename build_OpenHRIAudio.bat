@@ -1,15 +1,20 @@
 @rem ソースファイルディレクトリ、VCのバージョンを設定する。
+set BUILD_DIR=work
+set PATH_ORG=%PATH%
+
+@rem お使いの環境に合わせてアーキテクチャを修正します。
 set ARCH=x86
+
+@rem お使いのVisual studio のversion に合わせて修正します。
 set VC_VERSION=12
 
+@rem お使いのCMakeのversionに合わせて修正します。
+set PATH=%PATH%;C:\"Program Files"\"CMake 2.8"\bin;
+
+@rem お使いの環境に合わせてパスを修正します。
 set PORTAUDIO_DIR=C:\HRI_work\portaudio
 set RESAMPLE_DIR=C:\HRI_work\libresample-0.1.3
 set SPEEX_DIR=C:\HRI_work\speex-1.2rc1
-
-
-set BUILD_DIR=work
-set PATH_ORG=%PATH%
-set PATH=%PATH%;C:\"Program Files"\"CMake 2.8"\bin;
 
 if %ARCH% ==              set ARCH=x86
 if %VC_VERSION% ==        set VC_VERSION=10
