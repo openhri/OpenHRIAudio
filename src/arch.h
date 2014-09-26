@@ -62,7 +62,7 @@
 #else
 
 #ifndef FLOATING_POINT
-#error You now need to define either FIXED_POINT or FLOATING_POINT
+//#error You now need to define either FIXED_POINT or FLOATING_POINT
 #endif
 #if defined (ARM4_ASM) || defined(ARM5E_ASM) || defined(BFIN_ASM)
 #error I suppose you can have a [ARM4/ARM5E/Blackfin] that has float instructions?
