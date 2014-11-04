@@ -1,0 +1,14 @@
+Source: openhriaudio2.10
+Section: sound
+Priority: extra
+Maintainer: openrtc <openrtc@gmail.com>
+Build-Depends: gettext, g++, libc6, libgcc1, libomniorb4-1, libomnithread3c2, debhelper (>= 7.4), libtool, automake, autoconf, autotools-dev, openrtm-aist1.1, openrtm-aist1.1-dev, libpulse-dev, libgtkmm-2.4-dev, portaudio19-dev, libspeexdsp-dev, libresample1-dev, libsndfile1-dev, omniidl, omniorb-nameserver, libomniorb4-dev, uuid-dev
+Standards-Version: 3.9.2
+Homepage: http://openhri.net/
+
+Package: openhriaudio2.10
+Architecture: any
+Depends: openrtm-aist1.1, openrtm-aist1.1-dev, libpulse-dev, libgtkmm-2.4-dev, portaudio19-dev, libspeexdsp-dev, libresample1-dev, libsndfile1-dev
+Description: Audio components for OpenRTM (part of OpenHRI softwares)
+ OpenHRIAudio is an implementation of audio components for OpenRTM which
+ is developed as a part of OpenHRI softwares.

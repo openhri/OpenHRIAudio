@@ -10,3 +10,8 @@ set(SRC_DIRS "${PROJECT_SOURCE_DIR}/../../src")
 
 add_definitions(-DUSE_SMALLFT)
 add_library(fftwrap SHARED ${SRC_DIRS}/fftwrap.c ${SRC_DIRS}/smallft.c)
+
+
+install(TARGETS fftwrap
+				LIBRARY DESTINATION lib
+				COMPONENT "applications")

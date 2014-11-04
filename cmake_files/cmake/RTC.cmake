@@ -98,7 +98,6 @@ add_library(${RTC_NAME} SHARED
 target_link_libraries(${RTC_NAME} ${LIBRARIES})
 set_target_properties(${RTC_NAME} PROPERTIES PREFIX "")
 set_target_properties(${RTC_NAME} PROPERTIES LINK_FLAGS "${LDFLAGS}")
-#set_target_properties(${RTC_NAME} PROPERTIES COMPILE_FLAGS "-Wextra -Wall")
 
 if(UNIX)
     add_library(${RTC_NAME}-static STATIC
@@ -128,14 +127,15 @@ else()
     set_target_properties(${RTC_NAME}Comp PROPERTIES LINK_FLAGS "${LDFLAGS}")
 endif()
 
-install(TARGETS ${RTC_NAME} LIBRARY DESTINATION "${INSTALL_PREFIX}"
-                            ARCHIVE DESTINATION "${INSTALL_PREFIX}"
-                            RUNTIME DESTINATION "${INSTALL_PREFIX}"
+install(TARGETS ${RTC_NAME} ${RTC_NAME}Comp
+                            LIBRARY DESTINATION lib
+                            ARCHIVE DESTINATION lib
+                            RUNTIME DESTINATION bin 
         COMPONENT "applications")
-install(TARGETS ${RTC_NAME}Comp RUNTIME DESTINATION "${INSTALL_PREFIX}"
-        COMPONENT "applications")
-install(FILES RTC.xml DESTINATION "${INSTALL_PREFIX}"
-        COMPONENT "applications")
+
+install(FILES ${SRC_DIRS}/${RTC_NAME}.h
+        DESTINATION include
+        COMPONENT sources)
 
 
 # target settings for document
@@ -153,26 +153,26 @@ if(NOT DOC_TARGET)
 endif()
 add_dependencies(doc doxygen)
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc DESTINATION "${INSTALL_PREFIX}"
-        COMPONENT "documents")
+#install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc DESTINATION "${INSTALL_PREFIX}"
+#        COMPONENT "documents")
 
 
 # install source files
-install(FILES ${IMPL_SRCS}
-        DESTINATION "${INSTALL_PREFIX}/src"
-        COMPONENT "sources")
+#install(FILES ${IMPL_SRCS}
+#        DESTINATION "${INSTALL_PREFIX}/src"
+#        COMPONENT "sources")
 
-install(FILES ${LIBS_SRCS} ${LIBS_INCS} ${EXEC_SRCS}
-        DESTINATION "${INSTALL_PREFIX}/src"
-        COMPONENT "sources")
+#install(FILES ${LIBS_SRCS} ${LIBS_INCS} ${EXEC_SRCS}
+#        DESTINATION include
+#        COMPONENT sources)
 
-install(FILES ${OTHER_SRCS}
-        DESTINATION "${INSTALL_PREFIX}/src"
-        COMPONENT "sources")
+#install(FILES ${OTHER_SRCS}
+#        DESTINATION "${INSTALL_PREFIX}/src"
+#        COMPONENT "sources")
 
-install(DIRECTORY cmake_modules cpack_resources
-        DESTINATION "${INSTALL_PREFIX}/src"
-        COMPONENT "sources")
+#install(DIRECTORY cmake_modules cpack_resources
+#        DESTINATION "${INSTALL_PREFIX}/src"
+#        COMPONENT "sources")
 
 
 # package settings

@@ -1,0 +1,17 @@
+openhriaudio2.10 (2.10-1~ppa1.25precise) precise; urgency=low
+
+  * Modify changelog for uploading PPA 
+
+ -- openrtc <openrtc@gmail.com>  Wed, 22 Oct 2014 11:14:13 +0900
+
+openhriaudio2.10 (2.10-2~ppa2lucid) lucid; urgency=low
+
+  * Modify changelog for uploading PPA 
+
+ -- openrtc <openrtc@gmail.com>  Fri, 07 Dec 2012 11:50:25 +0900
+
+openhriaudio2.10 (2.10-1~ppa1lucid) lucid; urgency=low
+
+  * Initial release
+
+ -- openrtc <openrtc@gmail.com>  Tue, 04 Dec 2012 14:20:30 +0900
