@@ -6,6 +6,8 @@ add_subdirectory(fftwrap)
 add_subdirectory(WavPlayer)
 add_subdirectory(WavRecord)
 add_subdirectory(WebRTCVAD)
+add_subdirectory(PulseAudioInput)
+add_subdirectory(PulseAudioOutput)
 endif(UNIX)
 
 add_subdirectory(AutoGainControl)
