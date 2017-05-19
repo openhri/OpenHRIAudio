@@ -112,6 +112,7 @@ if(UNIX)
 
     #set_target_properties(${RTC_NAME}Comp PROPERTIES COMPILE_FLAGS -Wall)
     add_executable(${RTC_NAME}Comp ${EXEC_SRCS} )
+    add_dependencies(${RTC_NAME}Comp ${RTC_NAME})
     add_dependencies(${RTC_NAME}Comp ${RTC_NAME}-static)
     target_link_libraries(${RTC_NAME}Comp ${RTC_NAME}-static ${LIBRARIES})
 
