@@ -2,7 +2,7 @@
 #  CMake for WavRecord Component
 #
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 
 project(WavRecord)
 
@@ -26,9 +26,9 @@ ADD_DEFINITIONS(-DPACKAGE="${PACKAGE}" -DLOCALEDIR="${LOCALEDIR}")
 
 if (WIN32)
 #  set(SNDFILE_LIBRARIES "sndfile.lib")
+   set(SNDFILE_LIBRARIES ${SNDFILE_LIB})
 else (WIN32)
     list(APPEND INCLUDE_DIRS ${GTKMM_INCLUDE_DIRS})
-    #list(APPEND LIBRARY_DIRS ${GTKMM_LIB_DIRS})
     list(APPEND LIBRARIES ${GTKMM_LIBS} ${SNDFILE_LIBRARIES})
 endif(WIN32)
 
@@ -44,7 +44,8 @@ set(RTC_MAINTAINER "openrtp@m.aist.go.jp")
 string(TOLOWER ${RTC_NAME} PACKAGE_NAME)
 set(PACKAGE_VERSION "${RTC_VERSION_MAJOR}.${RTC_VERSION_MINOR}.${RTC_VERSION_PATCH}")
 
-set(LIBS_SRCS ${SRC_DIRS}/${PROJECT_NAME}.cpp  ${SRC_DIRS}/windowing.cpp)
+#set(LIBS_SRCS ${SRC_DIRS}/${PROJECT_NAME}.cpp  ${SRC_DIRS}/windowing.cpp)
+set(LIBS_SRCS ${SRC_DIRS}/${PROJECT_NAME}.cpp)
 
 set(LIBS_INCS ${SRC_DIRS}/${PROJECT_NAME}.h)
 
@@ -52,5 +53,10 @@ set(EXEC_SRCS ${SRC_DIRS}/${PROJECT_NAME}Comp.cpp)
 
 set(OTHER_SRCS CMakeLists.txt Doxyfile.in
                ${PROJECT_NAME}.conf rtc.conf)
+
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+  add_definitions(-std=gnu++0x)
+endif()
 
 include(RTC)

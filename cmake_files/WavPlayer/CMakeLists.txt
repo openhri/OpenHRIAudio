@@ -2,7 +2,7 @@
 # CMake for WavPlayer Component
 #
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 
 project(WavPlayer)
 
@@ -50,5 +50,8 @@ set(EXEC_SRCS ${SRC_DIRS}/${PROJECT_NAME}Comp.cpp)
 set(OTHER_SRCS CMakeLists.txt Doxyfile.in
                ${PROJECT_NAME}.conf rtc.conf)
 
+if(CMAKE_COMPILER_IS_GNUCXX)
+  add_definitions(-std=gnu++0x)
+endif()
 
 include(RTC)

@@ -23,7 +23,7 @@
 #else
 #define VERSION "1.00"
 #endif
-#include <intl.h>
+#include "intl.h"
 
 // Module specification
 // <rtc-template block="module_spec">

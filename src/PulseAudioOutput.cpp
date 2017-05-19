@@ -23,7 +23,7 @@
 #else
 #define VERSION "1.00"
 #endif
-#include <intl.h>
+#include "intl.h"
 
 #define MIN_INTERNAL_BUFFER 16000
 
